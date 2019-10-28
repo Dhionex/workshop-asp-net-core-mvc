@@ -18,7 +18,7 @@ namespace SalesWebMvc.Models
         [Display(Name ="Base Salary")]
         public double BaseSalary { get; set; }
 
-        [DisplayFormat(DataFormatString ="{0:dd:MM:yyy}")]
+        [DisplayFormat(DataFormatString ="{0:dd/MM/yyy}")]
         [Display(Name = "Birth Date")]
         [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
