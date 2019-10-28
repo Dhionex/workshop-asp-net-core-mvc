@@ -19,6 +19,8 @@ namespace SalesWebMvc.Models
         public SaleStatus Status { get; set; }
         public Seller Seller { get; set; }
 
+        public int SelerId { get; set; }
+
 
         public SalesRecord()
         {

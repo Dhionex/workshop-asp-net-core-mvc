@@ -4,12 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SalesWebMvc.Services;
+using SalesWebMvc.Models.ViewModels;
+using SalesWebMvc.Models;
 
 namespace SalesWebMvc.Controllers
 {
     public class SalesRecordsController : Controller
     {
         private readonly SalesRecordService _salesRecordService;
+        private readonly SellerService _sallerService;
 
         public SalesRecordsController(SalesRecordService salesRecordService)
         {
@@ -58,5 +61,13 @@ namespace SalesWebMvc.Controllers
 
             return View(result);
         }
+
+        public async Task<IActionResult> Create()
+        {
+            var sellers = await _sallerService.FindAllAsync();
+            var viewModel = new SalesRecordViewModel {Sellers=sellers };
+            return View(viewModel);
+        }
     }
+
 }
