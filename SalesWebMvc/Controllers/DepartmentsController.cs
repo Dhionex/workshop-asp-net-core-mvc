@@ -6,9 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SalesWebMvc.Models;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace SalesWebMvc.Controllers
 {
+    [Authorize]
     public class DepartmentsController : Controller
     {
         private readonly SalesWebMvcContext _context;

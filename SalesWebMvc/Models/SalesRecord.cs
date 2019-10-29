@@ -19,7 +19,10 @@ namespace SalesWebMvc.Models
         public SaleStatus Status { get; set; }
         public Seller Seller { get; set; }
 
-        public int SelerId { get; set; }
+        public int SellerId { get; set; }
+
+        //public Department Department { get; set; }
+        //public int DepartmentId { get; set; }
 
 
         public SalesRecord()

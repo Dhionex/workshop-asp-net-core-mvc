@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Localization;
 using SalesWebMvc.Models.ViewModels;
 using SalesWebMvc.Data;
 using SalesWebMvc.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace SalesWebMvc
 {
@@ -30,7 +31,16 @@ namespace SalesWebMvc
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
+
+
+
         {
+            //Autenticação de usuário
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+
+
+
+
             
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -79,6 +89,9 @@ namespace SalesWebMvc
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+            //autenticação de usuário
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {

@@ -55,5 +55,13 @@ namespace SalesWebMvc.Services
                 .ToListAsync();
 
         }
+
+        public void Insert(SalesRecord obj)
+
+        {
+            _context.Add(obj);
+            _context.SaveChanges();
+        }
     }
+
 }

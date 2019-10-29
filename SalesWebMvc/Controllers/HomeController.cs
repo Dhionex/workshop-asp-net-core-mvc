@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SalesWebMvc.Models;
 using SalesWebMvc.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SalesWebMvc.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         public IActionResult Index()

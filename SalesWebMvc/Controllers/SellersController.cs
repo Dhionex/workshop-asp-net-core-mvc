@@ -8,9 +8,12 @@ using SalesWebMvc.Models;
 using SalesWebMvc.Models.ViewModels;
 using SalesWebMvc.Services.Exceptions;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace SalesWebMvc.Controllers
 {
+    [Authorize]
     public class SellersController : Controller
     {
 

@@ -6,17 +6,23 @@ using Microsoft.AspNetCore.Mvc;
 using SalesWebMvc.Services;
 using SalesWebMvc.Models.ViewModels;
 using SalesWebMvc.Models;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace SalesWebMvc.Controllers
 {
+    [Authorize]
     public class SalesRecordsController : Controller
     {
         private readonly SalesRecordService _salesRecordService;
         private readonly SellerService _sallerService;
+        private readonly DepartmentService _departmentService;
 
-        public SalesRecordsController(SalesRecordService salesRecordService)
+        public SalesRecordsController(SalesRecordService salesRecordService, SellerService sellerService, DepartmentService departmentService)
         {
             _salesRecordService = salesRecordService;
+            _sallerService = sellerService;
+            _departmentService = departmentService;
         }
 
         public IActionResult Index()
@@ -26,7 +32,7 @@ namespace SalesWebMvc.Controllers
 
         public async Task<IActionResult> SimpleSearch(DateTime? minDate, DateTime? maxDate)
         {
-            if (!minDate.HasValue) 
+            if (!minDate.HasValue)
             {
                 minDate = new DateTime(DateTime.Now.Year, 1, 1);
             }
@@ -64,10 +70,20 @@ namespace SalesWebMvc.Controllers
 
         public async Task<IActionResult> Create()
         {
-            var sellers = await _sallerService.FindAllAsync();
-            var viewModel = new SalesRecordViewModel {Sellers=sellers };
+            var departments = await _departmentService.FindAllAsync();
+            var seller = await _sallerService.FindAllAsync();
+            var viewModel = new SalesRecordViewModel { Departments = departments, Sellers = seller };
             return View(viewModel);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(SalesRecord salesRecord)
+        {
+            _salesRecordService.Insert(salesRecord);
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 
 }
