@@ -1,0 +1,33 @@
+﻿@model SalesWebMvc.Models.ViewModels.SalesRecordViewModel
+
+
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h4>
+    Vendas
+</h4>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+         <form asp-action="Create">
+             <div class="form-group">
+                 <label asp-for="SalesRecord.Date" class="control-label"></label>
+                 <input asp-for="SalesRecord.Date" class="form-control" />
+
+                 <div></div>
+
+                 <label asp-for="SalesRecord.Amount" class="control-label"></label>
+                 <input asp-for="SalesRecord.Amount" class="form-control" />
+                
+                 
+             </div>
+         </form>
+    </div>
+
+</div>
