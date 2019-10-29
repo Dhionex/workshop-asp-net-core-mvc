@@ -11,7 +11,8 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace SalesWebMvc.Controllers
 {
-    [Authorize]
+
+    [Authorize(Roles = "Admin")]
     public class SalesRecordsController : Controller
     {
         private readonly SalesRecordService _salesRecordService;

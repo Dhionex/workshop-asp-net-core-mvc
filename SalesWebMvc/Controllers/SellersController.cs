@@ -13,7 +13,8 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace SalesWebMvc.Controllers
 {
-    [Authorize]
+
+    [Authorize(Roles = "Admin")]
     public class SellersController : Controller
     {
 
